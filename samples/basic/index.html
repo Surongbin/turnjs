@@ -1,0 +1,98 @@
+<!doctype html>
+<!--[if lt IE 7 ]> <html lang="en" class="ie6"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="en" class="ie7"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="en" class="ie8"> <![endif]-->
+<!--[if IE 9 ]>    <html lang="en" class="ie9"> <![endif]-->
+<!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->
+<head>
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no" name="viewport">
+<link rel="stylesheet" type="text/css" href="css/basic.css">
+<script type="text/javascript" src="http://js.app.meitudata.com/meitumall/v1/lib/jquery.min.js"></script>
+<script type="text/javascript" src='../../lib/turn.min.js'></script>
+<!-- <script src="http://www.17sucai.com/preview/59230/2014-12-23/demo/js/turn.js"></script> -->
+</head>
+<style type="text/css">
+body {
+	    overflow-y: auto;
+}
+.phone_evaluate {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        height: 81px;
+        width: 100%;
+        background: rgba(0, 0, 0, .55);
+        z-index: 20;
+    }
+    .main {
+    	position: absolute;
+    	top: 0;
+    	left: 0;
+    }
+    .other, .main {
+    	width: 100%;
+    	height: 667px;
+    }
+</style>
+<body>
+<div class="main">
+<div class="flipbook-viewport">
+	<div class="container">
+		<div class="flipbook">
+			<div>第一屏</div>
+			<div>第二屏</div>
+		</div>
+	</div>
+</div>
+</div>
+
+<div class="other"></div>
+<div class="phone_evaluate">
+</div>
+
+
+<script type="text/javascript">
+
+function loadApp() {
+	var height = window.innerHeight;
+	var width = window.innerWidth;
+	// Create the flipbook
+	$('.flipbook').turn({
+			// Width
+			width: width, //922,		
+			// Height
+			height:height,//460,
+			// Elevation
+			elevation: 50,		
+			// Enable gradients
+			gradients: true,
+			// Auto center this flipbook
+			autoCenter: false,
+			display: 'single',
+			when: {
+				end: function(event, page, pageTurn) {
+					if (page.page === 1) {
+						$(".flipbook").turn("peel", "br");
+					}
+				}
+			}
+
+	});
+	$('.flipbook-viewport .flipbook').css({
+		left: -width+'px',
+		top: -height/2+'px'
+	});
+
+	$(".flipbook").turn("peel", "br");
+}
+loadApp();
+var corner = {
+	corner: 'tr',
+	x: 300,
+	y: 22
+}
+// flipMethods._showFoldedPage.call(this, data.corner);
+</script>
+
+</body>
+</html>
